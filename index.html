@@ -8,25 +8,33 @@
   </head>
   <body>
     <div id="valentineQuestion"><b>Will you be my valentine?</b></div>
-    <button class="answerButton" onclick="location.href='thankyou.html'">
+    <button class="answerButton" id = "yesBtn" onclick="saveAnswer('Yes')">
       Yes
     </button>
-    <button class="answerButton" id="noButton">I no no wanna o(╥﹏╥)o</button>
+    <button class="answerButton" id="noButton">No, Gerrout!</button>
     <br />
     <img src="cat.gif" alt="cat asking question" class="responsive" />
 
     <script>
-      document
-        .getElementById("noButton")
-        .addEventListener("click", function () {
-          var yesButton = document.querySelector(
-            'button[onclick*="thankyou.html"]'
-          );
-          var currentFontSize = parseInt(
-            window.getComputedStyle(yesButton).fontSize
-          );
-          yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
-        });
+      noArray = ["No, Gerrout!", "No Onigbendi!", "Oya e", "No, Anyways", "No, buy diamond ring first!", "No, Olodo"]
+      counter = 0
+      N = noArray.length
+      noBtn = document.getElementById("noButton")
+      noBtn.addEventListener("click", function () {
+        counter += 1
+        counter = counter % N
+        var yesButton = document.getElementById("yesBtn")
+        var currentFontSize = parseInt(
+          window.getComputedStyle(yesButton).fontSize
+        );
+        noBtn.innerHTML = noArray[counter]
+        yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
+      });
+      function saveAnswer(ans) {
+        localStorage.setItem("valentineAnswer", ans);
+        location.href = "thankyou.html";
+      };
+
     </script>
   </body>
 </html>
